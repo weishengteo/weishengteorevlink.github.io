@@ -239,7 +239,7 @@ function checkWorkItem() {
       if (result.status == "success") {
         window.open(uploadUrl, '_self');
         hideLoading();
-        console.log("done");
+        console.log(result);
       }
       else if (result.status == "failedInstructions") {
         console.log("failed");
