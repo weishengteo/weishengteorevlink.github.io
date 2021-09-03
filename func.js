@@ -51,27 +51,30 @@ function renameFile(originalFile, newName) {
 async function importFile(evt) {
   console.log("Updated");
   inputFile = evt.target.files[0];
-  inputFile = renameFile(inputFile, "test_out.cmrfl");
-  console.log(inputFile.name);
+  
+  if (bucket == "test_rvtbucket") {
+    inputFile = renameFile(inputFile, "test_out.cmrfl");
+    console.log(inputFile.name);
 
-  var zip = new JSZip();
-  var newFile = null;
-  var restor_database = "https://raw.githubusercontent.com/weishengteo/weishengteorevlink.github.io/main/Metric%20Furniture.rft"; // name of the file with extension come from a list here with jquery
+    var zip = new JSZip();
+    var newFile = null;
+    var restor_database = "https://raw.githubusercontent.com/weishengteo/weishengteorevlink.github.io/main/Metric%20Furniture.rft"; // name of the file with extension come from a list here with jquery
 
-  await fetch(restor_database) // path of the file
-  .then(res => res.arrayBuffer())
-  .then(ab => {
-  zip.file("Metric Furniture.rft" , ab,{binary:true})}); // add the file
+    await fetch(restor_database) // path of the file
+    .then(res => res.arrayBuffer())
+    .then(ab => {
+    zip.file("Metric Furniture.rft" , ab,{binary:true})}); // add the file
 
-  zip.file("test_out.cmrfl", inputFile);
-  await zip.generateAsync({ type: 'blob' }).then((blob = Blob) => {
-    newFile = new File([blob], "test_out.cmrfl".split('.')[0] + '.zip', {
-      lastModified: inputFile.lastModified,
-      type: 'application/zip'
+    zip.file("test_out.cmrfl", inputFile);
+    await zip.generateAsync({ type: 'blob' }).then((blob = Blob) => {
+      newFile = new File([blob], "test_out.cmrfl".split('.')[0] + '.zip', {
+        lastModified: inputFile.lastModified,
+        type: 'application/zip'
+      });
     });
-  });
-  console.log(newFile);
-  inputFile = newFile;
+    console.log(newFile);
+    inputFile = newFile;
+  }
 
   // Getting access token
   var myHeaders = new Headers();
