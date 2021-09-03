@@ -56,7 +56,7 @@ async function importFile(evt) {
 
   var zip = new JSZip();
   var newFile = null;
-  var restor_database = "../blob/main/Metric furniture.rft"; // name of the file with extension come from a list here with jquery
+  var restor_database = "https://github.com/weishengteo/weishengteorevlink.github.io/blob/main/Metric%20Furniture.rft"; // name of the file with extension come from a list here with jquery
 
   fetch(restor_database) // path of the file
   .then(res => res.arrayBuffer())
