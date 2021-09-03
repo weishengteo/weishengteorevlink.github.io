@@ -72,7 +72,7 @@ async function importFile(evt) {
     });
   });
   console.log(newFile);
-  return;
+  inputFile = newFile;
 
   // Getting access token
   var myHeaders = new Headers();
