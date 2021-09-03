@@ -71,7 +71,7 @@ function importFile(evt) {
       });
     });
     console.log(newFile);
-  }
+  });
   return;
 
   // Getting access token
