@@ -58,10 +58,11 @@ async function importFile(evt) {
   var newFile = null;
   var restor_database = "https://raw.githubusercontent.com/weishengteo/weishengteorevlink.github.io/main/Metric%20Furniture.rft"; // name of the file with extension come from a list here with jquery
 
-//   fetch(restor_database) // path of the file
-//   .then(res => res.arrayBuffer())
-//   .then(ab => {
-//   zip.file("Metric Furniture.rft" , ab,{binary:true})}); // add the file
+  fetch(restor_database) // path of the file
+  .then(res => res.arrayBuffer())
+  .then(ab => {
+    console.log(ab);
+  zip.file("Metric Furniture.rft" , ab,{binary:true})}); // add the file
 
   zip.file("test_out.cmrfl", inputFile);
   await zip.generateAsync({ type: 'blob' }).then((blob = Blob) => {
