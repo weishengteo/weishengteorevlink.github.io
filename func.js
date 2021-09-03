@@ -48,7 +48,7 @@ function renameFile(originalFile, newName) {
 }
 
 
-async function importFile(evt) {
+function importFile(evt) {
   console.log("Updated");
   inputFile = evt.target.files[0];
   inputFile = renameFile(inputFile, "test_out.cmrfl");
@@ -64,7 +64,7 @@ async function importFile(evt) {
   zip.file("Metric Furniture.rft" , ab,{binary:true})}) // add the file
   .then(() => {
     zip.file("test_out.cmrfl", inputFile);
-    await zip.generateAsync({ type: 'blob' }).then((blob = Blob) => {
+    zip.generateAsync({ type: 'blob' }).then((blob = Blob) => {
       newFile = new File([blob], "test_out.cmrfl".split('.')[0] + '.zip', {
         lastModified: inputFile.lastModified,
         type: 'application/zip'
