@@ -49,6 +49,7 @@ function renameFile(originalFile, newName) {
 
 
 async function importFile(evt) {
+  console.log("Updated");
   inputFile = evt.target.files[0];
   inputFile = renameFile(inputFile, "test_out.cmrfl");
   console.log(inputFile.name);
