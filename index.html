@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Forge Revlink</title>
+
+</head>
+<!-- Links for MDL -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils-ie.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils-ie.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip-utils/0.1.0/jszip-utils.js"></script>
+
+<style>
+  #myInput {
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+  }
+
+  #myTable {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+  }
+
+  #myTable th, #myTable td {
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
+  }
+
+  #myTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd;
+  }
+
+  #myTable tr.header, #myTable tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+  }
+
+  .centerImage
+  {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+  }
+
+  #centereditem {text-align: center;}
+
+  #cmrflfileinput { display: none }
+
+  #rvtfileinput { display: none }
+
+  .mdl-textfield__input{
+    width:500px;
+    display: inline-block;
+  }
+
+  .toolbar {
+    float: left;
+  }
+
+  p {
+    font-size: 20px;
+  }
+
+  .LockOn {
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    z-index: 999;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:white;
+    vertical-align:bottom;
+    padding-top: 20%;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+    font-size:large;
+    color:blue;
+    font-style:italic;
+    font-weight:400;
+    background-image: url("http://cdn.lowgif.com/full/4cc179357c1a95d2-.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+  .LockOn:after {
+    content: "Loading...";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+  }
+
+</style>
+<body>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+
+  <!-- Always shows a header, even in smaller screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Forge Revlink Conversion Preview</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <img src="https://www.insitusales.com/wp-content/uploads/2020/03/undraw_report_mx0a.png" alt="Main picture" class="centerImage" width="500">
+      <br><br>
+
+      <div id="centereditem">
+        <!-- File upload section -->
+        <p><b>Convert .cmrfl file into .rvt file:</b></p>
+        <div class="form-inline">
+          Please upload .cmrfl file: &nbsp;
+          <input class="mdl-textfield__input" placeholder="File Name..." type="text" id="uploadStockDoc" readonly>
+          <input type="file" id="cmrflfileinput" accept=".csv,application/vnd.ms-excel,.xlt,application/vnd.ms-excel,.xla,application/vnd.ms-excel,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.xltx,application/vnd.openxmlformats-officedocument.spreadsheetml.template,.xlsm,application/vnd.ms-excel.sheet.macroEnabled.12,.xltm,application/vnd.ms-excel.template.macroEnabled.12,.xlam,application/vnd.ms-excel.addin.macroEnabled.12,.xlsb,application/vnd.ms-excel.sheet.binary.macroEnabled.12">
+          <label for="cmrflfileinput" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Choose File
+          </label>
+        </div><br><br><br><br><br><br><br>
+
+        <p><b>Convert .rvt file into .cmrfp file:</b></p>
+        <div class="form-inline">
+          Please upload .rvt file: &nbsp;
+          <input class="mdl-textfield__input" placeholder="File Name..." type="text" id="uploadStockDoc" readonly>
+          <input type="file" id="rvtfileinput" accept=".csv,application/vnd.ms-excel,.xlt,application/vnd.ms-excel,.xla,application/vnd.ms-excel,.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.xltx,application/vnd.openxmlformats-officedocument.spreadsheetml.template,.xlsm,application/vnd.ms-excel.sheet.macroEnabled.12,.xltm,application/vnd.ms-excel.template.macroEnabled.12,.xlam,application/vnd.ms-excel.addin.macroEnabled.12,.xlsb,application/vnd.ms-excel.sheet.binary.macroEnabled.12">
+          <label for="rvtfileinput" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+          Choose File
+          </label>
+        </div><br><br>
+
+        <div id="dataviewer"></div>
+      </div>
+    </main>
+  </div>
+
+</body>
+<!-- Loading Screen, hidden by default -->
+<div id="coverScreen"  class="LockOn"></div>
+<script src="func.js"></script>
+</html>
