@@ -61,9 +61,8 @@ async function importFile(evt) {
   await fetch(restor_database) // path of the file
   .then(res => res.arrayBuffer())
   .then(ab => {
-  zip.file(restor_database , ab,{binary:true})}); // add the file
+  zip.file("Metric Furniture.rft" , ab,{binary:true})}); // add the file
 
-  zip.file("Metric Furniture.rft");
   zip.file("test_out.cmrfl", inputFile);
   await zip.generateAsync({ type: 'blob' }).then((blob = Blob) => {
     newFile = new File([blob], "test_out.cmrfl".split('.')[0] + '.zip', {
