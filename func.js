@@ -240,6 +240,8 @@ function checkWorkItem() {
         window.open(uploadUrl, '_self');
         hideLoading();
         console.log(result);
+        cmrflinput.value = "";
+        rvtinput.value = "";
       }
       else if (result.status == "failedInstructions") {
         console.log("failed");
