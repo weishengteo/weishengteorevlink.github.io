@@ -239,8 +239,16 @@ function checkWorkItem() {
       if (result.status == "success") {
         window.open(uploadUrl, '_self');
         hideLoading();
+        let csvContent = "data:text/csv;charset=utf-8,";
+        csvContent += result.stats.timeQueued + ",";
+        csvContent += result.stats.timeDownloadStarted + ",";
+        csvContent += result.stats.timeInstructionsStarted + ",";
+        csvContent += result.stats.timeInstructionsEnded + ",";
+        csvContent += result.stats.timeUploadEnded + ",";
+        csvContent += result.stats.timeFinished;
+        var encodedUri = encodeURI(csvContent);
+        window.open(encodedUri);
         console.log(result);
-        console.log(result.stats.timeFinished);
         cmrflinput.value = "";
         rvtinput.value = "";
       }
