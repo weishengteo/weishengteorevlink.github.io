@@ -240,6 +240,7 @@ function checkWorkItem() {
         window.open(uploadUrl, '_self');
         hideLoading();
         console.log(result);
+        console.log(result.stats.timeFinished);
         cmrflinput.value = "";
         rvtinput.value = "";
       }
