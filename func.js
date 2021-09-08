@@ -245,8 +245,9 @@ function checkWorkItem() {
         csvContent += result.stats.timeInstructionsStarted + ",";
         csvContent += result.stats.timeInstructionsEnded + ",";
         csvContent += result.stats.timeUploadEnded + ",";
-        csvContent += result.stats.timeFinished;
+        csvContent += result.stats.timeFinished + "\n";
         var encodedUri = encodeURI(csvContent);
+        console.log(encodedUri);
         window.open(encodedUri);
         console.log(result);
         cmrflinput.value = "";
