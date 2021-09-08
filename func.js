@@ -248,7 +248,12 @@ function checkWorkItem() {
         csvContent += result.stats.timeFinished + "\n";
         var encodedUri = encodeURI(csvContent);
         console.log(encodedUri);
-        window.open(encodedUri);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "my_data.csv");
+        document.body.appendChild(link); // Required for FF
+
+        link.click(); // This will download the data file named "my_data.csv".
         console.log(result);
         cmrflinput.value = "";
         rvtinput.value = "";
