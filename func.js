@@ -51,6 +51,7 @@ function renameFile(originalFile, newName) {
 
 
 async function importFile(evt) {
+  csvContent = "data:text/csv;charset=utf-8,";
   console.log("Updated");
   inputFile = evt.target.files[0];
   
