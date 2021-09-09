@@ -1,5 +1,7 @@
 let cmrflinput = document.getElementById('cmrflfileinput');
 let rvtinput = document.getElementById('rvtfileinput');
+let excelButton = document.getElementById('generateExcel');
+let csvContent = "data:text/csv;charset=utf-8,";
 
 var inputFile = null;
 var accessToken = null;
@@ -239,24 +241,16 @@ function checkWorkItem() {
       if (result.status == "success") {
         window.open(uploadUrl, '_self');
         hideLoading();
-        let csvContent = "data:text/csv;charset=utf-8,";
         csvContent += result.stats.timeQueued + ",";
         csvContent += result.stats.timeDownloadStarted + ",";
         csvContent += result.stats.timeInstructionsStarted + ",";
         csvContent += result.stats.timeInstructionsEnded + ",";
         csvContent += result.stats.timeUploadEnded + ",";
         csvContent += result.stats.timeFinished + "\n";
-        var encodedUri = encodeURI(csvContent);
-        console.log(encodedUri);
-        var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "my_data.csv");
-        document.body.appendChild(link); // Required for FF
-
-        link.click(); // This will download the data file named "my_data.csv".
         console.log(result);
         cmrflinput.value = "";
         rvtinput.value = "";
+        excelButton.style.visibility = "visible";
       }
       else if (result.status == "failedInstructions") {
         console.log("failed");
@@ -269,4 +263,16 @@ function checkWorkItem() {
       }
     })
     .catch(error => console.log('error', error));
+}
+
+function generateReport() {
+  var encodedUri = encodeURI(csvContent);
+  var link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "my_data.csv");
+  document.body.appendChild(link); // Required for FF
+  link.click(); // This will download the data file named "my_data.csv".
+  
+  csvContent = "data:text/csv;charset=utf-8,";
+  excelButton.style.visibility = "hidden";
 }
