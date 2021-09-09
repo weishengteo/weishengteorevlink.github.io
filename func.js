@@ -242,6 +242,7 @@ function checkWorkItem() {
       if (result.status == "success") {
         window.open(uploadUrl, '_self');
         hideLoading();
+        csvContent += "Time Queued, Time Download Started, Time Instructions Started, Time Instructions Ended, Time Upload Ended, Time Finished\n";
         csvContent += result.stats.timeQueued + ",";
         csvContent += result.stats.timeDownloadStarted + ",";
         csvContent += result.stats.timeInstructionsStarted + ",";
