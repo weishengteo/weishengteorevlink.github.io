@@ -11,6 +11,7 @@ var workItemID = null;
 var bucket = null;
 var activityID = null;
 var fileContentType = null;
+var filename = null;
 
 cmrflinput.addEventListener('change', function(){
   bucket = "test_rvtbucket";
