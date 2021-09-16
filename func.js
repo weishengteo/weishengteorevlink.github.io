@@ -16,6 +16,7 @@ cmrflinput.addEventListener('change', function(){
   bucket = "test_rvtbucket";
   activityID = "ConvertToRVT.ConvertRVT+test";
   fileContentType = "application/zip";
+  filename = "result.rvt";
   showLoading();
 });
 cmrflinput.addEventListener('change', main);
@@ -24,6 +25,7 @@ rvtinput.addEventListener('change', function(){
   bucket = "test_importbucket";
   activityID = "ConvertToRVT.ConvertCMRFP+test";
   fileContentType = "application/octet-stream";
+  filename = "result.cmrfp";
   showLoading();
 });
 rvtinput.addEventListener('change', main);
@@ -125,7 +127,7 @@ function uploadFile(result) {
     redirect: 'follow'
   };
 
-  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/result.rvt", requestOptions)
+  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/test_blank", requestOptions)
     .then(response => response.text())
     .then(function(result) {
       getDownloadUrl();
@@ -149,7 +151,7 @@ function getDownloadUrl() {
     redirect: 'follow'
   };
 
-  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/result.rvt/signed", requestOptions)
+  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/test_blank/signed", requestOptions)
     .then(response => response.text())
     .then(function(result) {
       result = JSON.parse(result)
@@ -176,7 +178,7 @@ function getUploadUrl() {
     redirect: 'follow'
   };
 
-  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/result.rvt/signed?access=readwrite", requestOptions)
+  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/" + filename + "/signed?access=readwrite", requestOptions)
     .then(response => response.text())
     .then(function(result) {
       result = JSON.parse(result)
@@ -240,7 +242,7 @@ function checkWorkItem() {
     .then(function(result) {
       result = JSON.parse(result);
       if (result.status == "success") {
-        window.open(uploadUrl + "/result.rvt", '_self');
+        window.open(uploadUrl, '_self');
         hideLoading();
         csvContent += "Time Queued, Time Download Started, Time Instructions Started, Time Instructions Ended, Time Upload Ended, Time Finished\n";
         csvContent += result.stats.timeQueued + ",";
