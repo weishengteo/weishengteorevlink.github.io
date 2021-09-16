@@ -125,7 +125,7 @@ function uploadFile(result) {
     redirect: 'follow'
   };
 
-  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/test_blank", requestOptions)
+  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/result.rvt", requestOptions)
     .then(response => response.text())
     .then(function(result) {
       getDownloadUrl();
@@ -149,7 +149,7 @@ function getDownloadUrl() {
     redirect: 'follow'
   };
 
-  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/test_blank/signed", requestOptions)
+  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/result.rvt/signed", requestOptions)
     .then(response => response.text())
     .then(function(result) {
       result = JSON.parse(result)
