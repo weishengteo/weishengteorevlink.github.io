@@ -176,7 +176,7 @@ function getUploadUrl() {
     redirect: 'follow'
   };
 
-  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/test_blank/signed?access=readwrite", requestOptions)
+  fetch("https://developer.api.autodesk.com/oss/v2/buckets/" + bucket + "/objects/result.rvt/signed?access=readwrite", requestOptions)
     .then(response => response.text())
     .then(function(result) {
       result = JSON.parse(result)
