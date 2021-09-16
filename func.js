@@ -240,7 +240,7 @@ function checkWorkItem() {
     .then(function(result) {
       result = JSON.parse(result);
       if (result.status == "success") {
-        window.open(uploadUrl, '_self');
+        window.open(uploadUrl + "/result.rvt", '_self');
         hideLoading();
         csvContent += "Time Queued, Time Download Started, Time Instructions Started, Time Instructions Ended, Time Upload Ended, Time Finished\n";
         csvContent += result.stats.timeQueued + ",";
